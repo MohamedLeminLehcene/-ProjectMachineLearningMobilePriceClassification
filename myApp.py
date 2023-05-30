@@ -6,17 +6,17 @@ import joblib
 
 # Load our model and scalar
 model = joblib.load("C:/Users/HP/Desktop/Bate ML/model.pkl")
-scaler = joblib.load("C:/Users/HP/Desktop/Bate ML/scalar.pkl")
+scalar = joblib.load("C:/Users/HP/Desktop/Bate ML/scalar.pkl")
 
 def mobile_price_classification(input_data):
     # Changing the input numpy array and reshaping
     input_changed = np.array(input_data).reshape(1,-1)
 
     # Standardize the model
-    std_input = scaler.transform(input_changed)
+    std_input = scalar.transform(input_changed)
     prediction = model.predict(std_input)
 
-    return "Estimated mobile price classification: " + str(prediction[0])
+    return "Resultat de prediction c'est la classe : " + str(prediction[0])
 
 
 def main():
