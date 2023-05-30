@@ -5,16 +5,15 @@ import streamlit as st
 import joblib
 
 # Load our model and scalar
-model = joblib.load("C:/Users/HP/Desktop/MLProject/Impl/Mobile Price Classification/model.pkl")
-scalar = joblib.load("C:/Users/HP/Desktop/MLProject/Impl/Mobile Price Classification/scalar.pkl")
+model = joblib.load("C:/Users/HP/Desktop/Bate ML/model.pkl")
+scaler = joblib.load("C:/Users/HP/Desktop/Bate ML/scalar.pkl")
 
 def mobile_price_classification(input_data):
     # Changing the input numpy array and reshaping
     input_changed = np.array(input_data).reshape(1,-1)
 
     # Standardize the model
-    std_input = scalar.transform(input_changed)
-
+    std_input = scaler.transform(input_changed)
     prediction = model.predict(std_input)
 
     return "Estimated mobile price classification: " + str(prediction[0])
@@ -72,7 +71,7 @@ def main():
     input3 = col3.text_input("Clock Speed")
     input4 = col4.text_input("Dual SIM")
 
-    col5 , col6 ,col7,col8,col9,col21= st.columns(5)
+    col5 , col6 ,col7,col8,col9,col21= st.columns(6)
 
     input21 = col21.text_input("Fc")
 
@@ -97,7 +96,7 @@ def main():
     input20 = col19.text_input("Wifi")
 
     # Create a button
-    if st.button('Check Estimated Classifier', key="classify_button"):
+    if st.button('Resultat du model ce las classe => ', key="classify_button"):
         mobile_classifier = mobile_price_classification([[input1,input2,input3,input4,input21,input5,input6,input7,input8,input9,input10,input11,input12,input13,input14,input16,input17,input18,input19,input20]])  # Replace with your classifier function
         st.markdown('<div class="result">{}</div>'.format(mobile_classifier), unsafe_allow_html=True)
 
