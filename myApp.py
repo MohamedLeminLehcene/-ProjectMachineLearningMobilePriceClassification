@@ -1,7 +1,5 @@
-
 import numpy as np
 import streamlit as st
-
 import joblib
 
 # Load our model and scalar
@@ -25,9 +23,10 @@ def main():
     <style>
         .title {
             color: #1e3888;
-            font-size: 24px;
+            font-size: 32px;
             font-weight: bold;
             margin-bottom: 20px;
+            text-align: center;
         }
         .text-input {
             margin-bottom: 10px;
@@ -45,24 +44,32 @@ def main():
             font-weight: bold;
             margin-top: 20px;
         }
+        .card {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+        .navbar {
+            background-color: #1e3888;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .navbar-title {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: bold;
+        }
     </style>
     """, unsafe_allow_html=True)
 
     # Background image
-    st.markdown(
-        """
-        <style>
-            body {
-                background-image: url('your_background_image_url');
-                background-size: cover;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
 
-    # Creating the title
-    st.markdown('<div class="title">Project ML Mobile Price Classification App</div>', unsafe_allow_html=True)
+
+    # Creating the navigation bar
+    st.markdown('<div class="navbar"><span class="navbar-title">Model en Machine Learning pour classifier le prix du mobile</span></div>', unsafe_allow_html=True)
+
 
 
     col1 , col2 ,col3,col4= st.columns(4)
@@ -96,18 +103,13 @@ def main():
     input20 = col19.text_input("Wifi")
 
     # Create a button
-    if st.button('Resultat du model ce las classe => ', key="classify_button"):
+    if st.button('Resultat du model ce la classe => ', key="classify_button"):
         mobile_classifier = mobile_price_classification([[input1,input2,input3,input4,input21,input5,input6,input7,input8,input9,input10,input11,input12,input13,input14,input16,input17,input18,input19,input20]])  # Replace with your classifier function
         st.markdown('<div class="result">{}</div>'.format(mobile_classifier), unsafe_allow_html=True)
 
+    # Closing the card
+    st.markdown('</div>', unsafe_allow_html=True)
 
-   
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
